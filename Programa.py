@@ -18,6 +18,7 @@ while option != 5:
     print "5 - Sair"
     option = input()
 
+#### 1 - CADASTROS ####
     if option == 1:
         while opt != 5:
             print "====== Cadastrar ======"
@@ -42,7 +43,6 @@ while option != 5:
                 print "--- Medico --- "
                 print "Digite a matricula: "
                 matricula = raw_input()
-                print "Digite o nome: "
                 nome = raw_input()
                 print "Digite a especialidade: "
                 especialidade = raw_input()    
@@ -69,18 +69,38 @@ while option != 5:
                 Enfermeira(nome, seguro, idade)
 	
 
+#### 2 - INTERNACAO ####
     if option == 2:
-	print "++++ Internacao ++++"
-        print "Digite o codigo: "
-        codigo = raw_input()
-        print "Digite a data de inicio: "
-        data_inicio = raw_input()
-        print "Digite o seguro social do paciente: "
-        paciente = raw_input()
-        print "Digite a matricula do medico: "
-        medico = raw_input()
-        Internacao(codigo, data_inicio, "", medico, paciente)
+        while opt != 3:
+            print "====== Internacao ======"
+            print "1 - Inserir"
+            print "2 - Fechar internacao"
+            print "3 - Voltar"
+            opt = input()
 
+	    if opt == 1:
+	        print "++++ Internacao ++++"
+                print "Digite o codigo: "
+                codigo = raw_input()
+                print "Digite a data de inicio: "
+                data_inicio = raw_input()
+                print "Digite o seguro social do paciente: "
+                paciente = raw_input()
+                print "Digite a matricula do medico: "
+                medico = raw_input()
+                print "Informe o codigo do Hospital: "
+                hospital = raw_input()
+                Internacao(codigo, data_inicio, "", medico, paciente, hospital)
+
+	    if opt == 2:
+                print "++++ Internacao ++++"
+                print "Digite o codigo: "
+                codigo = raw_input()
+                print "Informe a data fim: "
+                data_fim = raw_input()
+                FecharInternacao(codigo, data_fim)
+
+#### 3 - ATENDIMENTO ####
     if option == 3:
 	print "++++ Atendimento ++++"
         print "Informe a internacao: "
@@ -89,7 +109,7 @@ while option != 5:
         responsavel = raw_input()
         Atendimento(internacao, responsavel)
 
-
+#### 4 - RELATORIOS ####
     if option == 4:
         while opr != 5:
             print "====== Relatorios ======"
@@ -102,24 +122,34 @@ while option != 5:
 
 	    if opr == 1:
                 print "*** Internacoes por Hospital *** "
-	        print "* Informe a internacao: "
-	        internacao = input()
+	        print "* Informe o hospital: "
+	        cod_hospital = raw_input()
+                print "*** Internacoes *** "
+		for i in range(len(Internacao.Internacoes)):
+		    if Internacao.Internacoes[i].hospital == cod_hospital:
+		  	    print Internacao.Internacoes[i].codigo
+	        	    print Internacao.Internacoes[i].data_inicio
+		            print Internacao.Internacoes[i].data_fim      
+	        	    print Internacao.Internacoes[i].medico
+	        	    print Internacao.Internacoes[i].paciente
+			    print "----------------"
+                print "*****   FIM   ***** "
 
 	    if opr == 2:
                 print "*** Profissionais por Hospital *** "
 	        print "* Informe o hospital: "
-	        internacao = input()
+	        internacao = raw_input()
 
 	    if opr == 3:
                 print "*** Atendimentos por internacao *** "
 	        print "* Informe a internacao: "
-	        internacao = input()
+	        internacao = raw_input()
 
 
 	    if opr == 4:
                 print "*** Hospitais por profissionais*** "
 	        print "* Informe a matricula do profissional: "
-	        internacao = input()
+	        internacao = raw_input()
 
 
 
