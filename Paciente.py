@@ -1,6 +1,6 @@
 class Paciente:
-    def __init__(self, nome, seguro, idade):
+    def __init__(self, nome, codigo_seguro_social, idade):
         self.nome = nome
-        self.seguro = seguro
+        self.codigo_seguro_social = codigo_seguro_social
         self.idade = idade
 

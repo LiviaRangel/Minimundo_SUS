@@ -1,9 +1,9 @@
-class Enfermeira:
+from Empregado import *
+
+class Enfermeira(Empregado):
     def __init__(self, nome, matricula, cargo):
-        self.nome = nome
-        self.matricula = matricula
+        Empregado.__init__(self, nome, matricula)
         self.cargo = cargo
-        self.hospitais = []
 
     def vincular_enfermeira_hospital(self, hospital):
         pass

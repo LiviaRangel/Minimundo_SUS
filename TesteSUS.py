@@ -20,7 +20,7 @@ class TestePaciente(unittest.TestCase):
 
     def testInsertPaciente(self):
         assert self.paciente.nome != None
-        assert self.paciente.seguro != None
+        assert self.paciente.codigo_seguro_social != None
         assert self.paciente.idade != None
 
 
