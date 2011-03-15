@@ -28,22 +28,35 @@ class TesteMedico(unittest.TestCase):
 
     def setUp(self):
         self.medico = Medico.Medico("Dr. House","M001","Cardiologista")
+        for i in range(3):
+            self.medico.hospitais.append(i)
 
     def testInsertMedico(self):
         assert self.medico.nome != None
         assert self.medico.matricula != None
         assert self.medico.especialidade != None
+        self.assertLessEqual(len(self.medico.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
+
+    def testVinculoMedicoHospitalThrowsException(self):
+        if (len(self.medico.hospitais) == 3):
+            self.assertRaises(RuntimeError, self.medico.vincular_medico_hospital, 4)
 
 
 class TesteEnfermeira(unittest.TestCase):
 
     def setUp(self):
         self.enfermeira = Enfermeira.Enfermeira("Maria dos Anjos","E001","Enfermeira chefe")
+        for i in range(3):
+            self.enfermeira.hospitais.append(i)
 
     def testInsertEnfermeira(self):
         assert self.enfermeira.nome != None
         assert self.enfermeira.matricula != None
         assert self.enfermeira.cargo != None
+
+    def testVinculoEnfermeiraHospitalThrowsException(self):
+        if (len(self.enfermeira.hospitais) == 3):
+            self.assertRaises(RuntimeError, self.enfermeira.vincular_enfermeira_hospital, 4)
 
 
 class TesteInternacao(unittest.TestCase):
@@ -78,3 +91,4 @@ class TesteAtendimento(unittest.TestCase):
 
 if __name__== "__main__":
     unittest.main()
+

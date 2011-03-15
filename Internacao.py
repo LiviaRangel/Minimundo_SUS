@@ -1,14 +1,15 @@
 class Internacao:
 
     Internacoes = []
-    def __init__(self, codigo, data_inicio, data_fim, medico, paciente, hospital):
+    def __init__(self, codigo, data_inicio, data_fim, medico, paciente):
+        #def __init__(self, codigo, data_inicio, data_fim, medico, paciente, hospital):
         self.codigo = codigo
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.medico = medico
         self.paciente = paciente
-	self.hospital = hospital
-	self.gravarInternacao(self)
+	#self.hospital = hospital
+	#self.gravarInternacao(self)
 
     def gravarInternacao(self, internacao):
         self.Internacoes.append(internacao)

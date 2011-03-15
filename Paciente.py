@@ -3,3 +3,4 @@ class Paciente:
         self.nome = nome
         self.seguro = seguro
         self.idade = idade
+
