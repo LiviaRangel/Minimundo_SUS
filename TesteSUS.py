@@ -8,9 +8,9 @@ class TesteHospital(unittest.TestCase):
         self.hospital = Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
 
     def testInsertHospital(self):
-        assertNotEqual(self.hospital.nome, None)
-        assert self.hospital.codigo != None
-        assert self.hospital.endereco != None
+        self.assertNotEqual(self.hospital.nome, None)
+        self.assertNotEqual(self.hospital.codigo, None)
+        self.assertNotEqual(self.hospital.endereco, None)
 
 
 class TestePaciente(unittest.TestCase):
@@ -19,9 +19,9 @@ class TestePaciente(unittest.TestCase):
         self.paciente = Paciente.Paciente("Jose da Silva","P001","18")
 
     def testInsertPaciente(self):
-        assert self.paciente.nome != None
-        assert self.paciente.codigo_seguro_social != None
-        assert self.paciente.idade != None
+        self.assertNotEqual(self.paciente.nome, None)
+        self.assertNotEqual(self.paciente.codigo_seguro_social, None)
+        self.assertNotEqual(self.paciente.idade, None)
 
 
 class TesteMedico(unittest.TestCase):
@@ -32,9 +32,9 @@ class TesteMedico(unittest.TestCase):
             self.medico.hospitais.append(i)
 
     def testInsertMedico(self):
-        assert self.medico.nome != None
-        assert self.medico.matricula != None
-        assert self.medico.especialidade != None
+        self.assertNotEqual(self.medico.nome, None)
+        self.assertNotEqual(self.medico.matricula, None)
+        self.assertNotEqual(self.medico.especialidade, None)
         self.assertLessEqual(len(self.medico.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
 
     @unittest.skip("Aguardando desenvolvimento")
@@ -56,9 +56,9 @@ class TesteEnfermeira(unittest.TestCase):
             self.enfermeira.hospitais.append(i)
 
     def testInsertEnfermeira(self):
-        assert self.enfermeira.nome != None
-        assert self.enfermeira.matricula != None
-        assert self.enfermeira.cargo != None
+        self.assertNotEqual(self.enfermeira.nome, None)
+        self.assertNotEqual(self.enfermeira.matricula, None)
+        self.assertNotEqual(self.enfermeira.cargo, None)
 
     @unittest.skip("Aguardando desenvolvimento")
     def testVinculoEnfermeiraHospitalThrowsException(self):
@@ -78,10 +78,10 @@ class TesteInternacao(unittest.TestCase):
         self.internacao = Internacao.Internacao("I001","05/02/2011", "", "M001","P001")
 
     def testInsertInternacao(self):
-        assert self.internacao.codigo != None
-        assert self.internacao.data_inicio != None
-        assert self.internacao.medico != None
-        assert self.internacao.paciente != None
+        self.assertNotEqual(self.internacao.codigo, None)
+        self.assertNotEqual(self.internacao.data_inicio, None)
+        self.assertNotEqual(self.internacao.medico, None)
+        self.assertNotEqual(self.internacao.paciente, None)
 
 #class TesteMedicoExists(unittest.TestCase):
 
@@ -93,8 +93,8 @@ class TesteAtendimento(unittest.TestCase):
         self.atendimento = Atendimento.Atendimento("I001","M001")
 
     def testInsertAtendimento(self):
-        assert self.atendimento.internacao != None
-        assert self.atendimento.responsavel != None
+        self.assertNotEqual(self.atendimento.internacao, None)
+        self.assertNotEqual(self.atendimento.responsavel, None)
 
 #class TesteInternacaoExists(unittest.TestCase):
 
