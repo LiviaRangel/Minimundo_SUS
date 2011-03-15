@@ -37,10 +37,16 @@ class TesteMedico(unittest.TestCase):
         assert self.medico.especialidade != None
         self.assertLessEqual(len(self.medico.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
 
+    @unittest.skip("Aguardando desenvolvimento")
     def testVinculoMedicoHospitalThrowsException(self):
         if (len(self.medico.hospitais) == 3):
             self.assertRaises(RuntimeError, self.medico.vincular_medico_hospital, 4)
 
+    @unittest.skip("Aguardando desenvolvimento")
+    def testVinculoMedicoHospitalExistente(self):
+        if (2 in self.medico.hospitais):
+            self.assertRaises(AttributeError, self.medico.vincular_medico_hospital, 2)
+            #self.assertNotIn(2, self.medico.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
 
 class TesteEnfermeira(unittest.TestCase):
 
@@ -54,9 +60,16 @@ class TesteEnfermeira(unittest.TestCase):
         assert self.enfermeira.matricula != None
         assert self.enfermeira.cargo != None
 
+    @unittest.skip("Aguardando desenvolvimento")
     def testVinculoEnfermeiraHospitalThrowsException(self):
         if (len(self.enfermeira.hospitais) == 3):
             self.assertRaises(RuntimeError, self.enfermeira.vincular_enfermeira_hospital, 4)
+
+    @unittest.skip("Aguardando desenvolvimento")
+    def testVinculoEnfermeiraHospitalExistente(self):
+        if (2 in self.enfermeira.hospitais):
+            self.assertRaises(AttributeError, self.enfermeira.vincular_enfermeira_hospital, 2)
+            #self.assertNotIn(2, self.enfermeira.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
 
 
 class TesteInternacao(unittest.TestCase):
