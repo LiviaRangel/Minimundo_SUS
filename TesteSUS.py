@@ -8,7 +8,7 @@ class TesteHospital(unittest.TestCase):
         self.hospital = Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
 
     def testInsertHospital(self):
-        assert self.hospital.nome != None
+        assertNotEqual(self.hospital.nome, None)
         assert self.hospital.codigo != None
         assert self.hospital.endereco != None
 
