@@ -1,5 +1,5 @@
 import unittest
-import Hospital, Paciente, Medico, Enfermeira, Internacao, Atendimento
+import Hospital, Paciente, Medico, Enfermeira, Internacao, Atendimento, Empregado
 
 
 class TesteHospital(unittest.TestCase):
@@ -13,6 +13,12 @@ class TesteHospital(unittest.TestCase):
         self.assertNotEqual(self.hospital.endereco, None)
 
 
+    def testListaHospitais(self):
+        self.assertListEqual(self.hospital.empregados, [], "Um hospital deve possuir uma lista de empregados")
+
+    def testListaInternacoes(self):
+        self.assertListEqual(self.hospital.internacoes, [], "Um hospital deve possuir uma lista de internacoes de pacientes")
+
 class TestePaciente(unittest.TestCase):
 
     def setUp(self):
@@ -23,65 +29,67 @@ class TestePaciente(unittest.TestCase):
         self.assertNotEqual(self.paciente.codigo_seguro_social, None)
         self.assertNotEqual(self.paciente.idade, None)
 
+    def testPossuiInternacoes(self):
+        self.assertListEqual(self.paciente.internacoes, [], "Um paciente possui uma lista das internacoes que sofreu")
+
+
+class TesteEmpregado(unittest.TestCase):
+    def setUp(self):
+        self.empregado = Empregado.Empregado("Dr. House","M001")
+        for i in range(3):
+            self.empregado.hospitais.append(i)
+
+    def testInsertEmpregado(self):
+        self.assertNotEqual(self.empregado.nome, None)
+        self.assertNotEqual(self.empregado.matricula, None)
+        self.assertLessEqual(len(self.empregado.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
+
+
+    def testVinculoEmpregadoHospitalThrowsException(self):
+        if (len(self.empregado.hospitais) == 3):
+            self.assertRaises(RuntimeError, self.empregado.vincular_empregado_hospital, 4)
+
+    #@unittest.skip("Aguardando desenvolvimento")
+    def testVinculoEmpregadoHospitalExistente(self):
+        if (2 in self.empregado.hospitais):
+            self.assertRaises(AttributeError, self.empregado.vincular_empregado_hospital, 2)
+            #self.assertNotIn(2, self.medico.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
+
+    def testListaAtendimentos(self):
+        self.assertListEqual(self.empregado.atendimentos, [], "Um empregado deve possuir uma lista de atendimentos")
 
 class TesteMedico(unittest.TestCase):
 
     def setUp(self):
         self.medico = Medico.Medico("Dr. House","M001","Cardiologista")
-        for i in range(3):
-            self.medico.hospitais.append(i)
 
     def testInsertMedico(self):
         self.assertNotEqual(self.medico.nome, None)
         self.assertNotEqual(self.medico.matricula, None)
         self.assertNotEqual(self.medico.especialidade, None)
-        self.assertLessEqual(len(self.medico.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
-
-    @unittest.skip("Aguardando desenvolvimento")
-    def testVinculoMedicoHospitalThrowsException(self):
-        if (len(self.medico.hospitais) == 3):
-            self.assertRaises(RuntimeError, self.medico.vincular_medico_hospital, 4)
-
-    @unittest.skip("Aguardando desenvolvimento")
-    def testVinculoMedicoHospitalExistente(self):
-        if (2 in self.medico.hospitais):
-            self.assertRaises(AttributeError, self.medico.vincular_medico_hospital, 2)
-            #self.assertNotIn(2, self.medico.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
 
 class TesteEnfermeira(unittest.TestCase):
 
     def setUp(self):
         self.enfermeira = Enfermeira.Enfermeira("Maria dos Anjos","E001","Enfermeira chefe")
-        for i in range(3):
-            self.enfermeira.hospitais.append(i)
 
     def testInsertEnfermeira(self):
         self.assertNotEqual(self.enfermeira.nome, None)
         self.assertNotEqual(self.enfermeira.matricula, None)
         self.assertNotEqual(self.enfermeira.cargo, None)
 
-    @unittest.skip("Aguardando desenvolvimento")
-    def testVinculoEnfermeiraHospitalThrowsException(self):
-        if (len(self.enfermeira.hospitais) == 3):
-            self.assertRaises(RuntimeError, self.enfermeira.vincular_enfermeira_hospital, 4)
-
-    @unittest.skip("Aguardando desenvolvimento")
-    def testVinculoEnfermeiraHospitalExistente(self):
-        if (2 in self.enfermeira.hospitais):
-            self.assertRaises(AttributeError, self.enfermeira.vincular_enfermeira_hospital, 2)
-            #self.assertNotIn(2, self.enfermeira.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
-
-
 class TesteInternacao(unittest.TestCase):
 
     def setUp(self):
-        self.internacao = Internacao.Internacao("I001","05/02/2011", "", "M001","P001")
+        self.internacao = Internacao.Internacao("I001","05/02/2011", "", "M001")
 
     def testInsertInternacao(self):
         self.assertNotEqual(self.internacao.codigo, None)
         self.assertNotEqual(self.internacao.data_inicio, None)
         self.assertNotEqual(self.internacao.medico, None)
-        self.assertNotEqual(self.internacao.paciente, None)
+
+    def testPossuiAtributoPaciente(self):
+        self.assertEqual(self.internacao.paciente, None)
 
 #class TesteMedicoExists(unittest.TestCase):
 
@@ -90,11 +98,13 @@ class TesteInternacao(unittest.TestCase):
 class TesteAtendimento(unittest.TestCase):
 
     def setUp(self):
-        self.atendimento = Atendimento.Atendimento("I001","M001")
+        self.atendimento = Atendimento.Atendimento()
 
-    def testInsertAtendimento(self):
-        self.assertNotEqual(self.atendimento.internacao, None)
-        self.assertNotEqual(self.atendimento.responsavel, None)
+    def testPossuiEmpregado(self):
+        self.assertEqual(self.atendimento.empregado, None)
+
+    def testPossuiInternacao(self):
+        self.assertEqual(self.atendimento.internacao, None)
 
 #class TesteInternacaoExists(unittest.TestCase):
 

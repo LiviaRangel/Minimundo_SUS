@@ -1,4 +1,4 @@
 class Atendimento:
-    def __init__(self, internacao, responsavel):
-        self.internacao = internacao
-        self.responsavel = responsavel
+    def __init__(self):
+        pass
+
