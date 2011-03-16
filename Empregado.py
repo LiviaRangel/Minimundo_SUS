@@ -12,6 +12,10 @@ class Empregado:
             raise RuntimeError("O empregado ja esta vinculado a 3 hospitais.")
         elif (hospital in self.hospitais):
             raise RuntimeError("Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
+        else:
         #print hospital
-        #self.hospitais.append(hospital)
+            self.hospitais.append(hospital)
+
+    def vincular_empregado_atendimento(self, atendimento):
+        self.atendimentos.append(atendimento)
 

@@ -6,3 +6,9 @@ class Hospital:
         self.internacoes = []
         self.empregados = []
 
+    def vincular_internacao_hospital(self, internacao):
+        self.internacoes.append(internacao)
+
+    def vincular_empregado_hospital(self, empregado):
+        self.empregados.append(empregado)
+

@@ -19,6 +19,14 @@ class TesteHospital(unittest.TestCase):
     def testListaInternacoes(self):
         self.assertListEqual(self.hospital.internacoes, [], "Um hospital deve possuir uma lista de internacoes de pacientes")
 
+    def testVinculoInternacoesHospital(self):
+        self.hospital.vincular_internacao_hospital(1)
+        self.assertEqual(len(self.hospital.internacoes), 1)
+
+    def testVinculoEmpregadoHospital(self):
+        self.hospital.vincular_empregado_hospital(1)
+        self.assertEqual(len(self.hospital.empregados), 1)
+
 class TestePaciente(unittest.TestCase):
 
     def setUp(self):
@@ -37,7 +45,9 @@ class TesteEmpregado(unittest.TestCase):
     def setUp(self):
         self.empregado = Empregado.Empregado("Dr. House","M001")
         for i in range(3):
-            self.empregado.hospitais.append(i)
+            self.empregado.vincular_empregado_hospital(i)
+            self.assertEqual(len(self.empregado.hospitais), i+1)
+
 
     def testInsertEmpregado(self):
         self.assertNotEqual(self.empregado.nome, None)
@@ -57,6 +67,10 @@ class TesteEmpregado(unittest.TestCase):
 
     def testListaAtendimentos(self):
         self.assertListEqual(self.empregado.atendimentos, [], "Um empregado deve possuir uma lista de atendimentos")
+
+    def testVinculoEmpregadoAtendimento(self):
+        self.empregado.vincular_empregado_atendimento(2)
+        self.assertEqual(len(self.empregado.atendimentos), 1)
 
 class TesteMedico(unittest.TestCase):
 
