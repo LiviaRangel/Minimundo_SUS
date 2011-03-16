@@ -1,4 +1,5 @@
 class Atendimento:
     def __init__(self):
-        pass
+        self.empregado = None
+        self.internacao = None
 

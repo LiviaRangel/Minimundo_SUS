@@ -3,4 +3,5 @@ class Paciente:
         self.nome = nome
         self.codigo_seguro_social = codigo_seguro_social
         self.idade = idade
+        self.internacoes = []
 

@@ -7,6 +7,7 @@ class Internacao:
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.medico = medico
+        self.paciente = None
 	#self.hospital = hospital
 	#self.gravarInternacao(self)
 

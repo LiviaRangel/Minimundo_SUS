@@ -3,4 +3,6 @@ class Hospital:
         self.nome = nome
         self.codigo = codigo
         self.endereco = endereco
+        self.internacoes = []
+        self.empregados = []
 
