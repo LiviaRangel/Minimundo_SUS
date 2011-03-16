@@ -52,7 +52,7 @@ class TesteEmpregado(unittest.TestCase):
     #@unittest.skip("Aguardando desenvolvimento")
     def testVinculoEmpregadoHospitalExistente(self):
         if (2 in self.empregado.hospitais):
-            self.assertRaises(AttributeError, self.empregado.vincular_empregado_hospital, 2)
+            self.assertRaises(RuntimeError, self.empregado.vincular_empregado_hospital, 2)
             #self.assertNotIn(2, self.medico.hospitais, "Nao se admite um empregado com mais de um vinculo em um mesmo hospital.")
 
     def testListaAtendimentos(self):
