@@ -1,10 +1,14 @@
 class Empregado:
-
+    empregados = []
     def __init__(self, nome, matricula):
         self.nome = nome
         self.matricula = matricula
         self.hospitais = []
         self.atendimentos = []
+        self.vincular_empregado()
+
+    def vincular_empregado(self):
+        Empregado.empregados.append(self)
 
     def vincular_empregado_hospital(self, hospital):
         #pass

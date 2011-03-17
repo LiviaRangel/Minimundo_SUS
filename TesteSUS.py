@@ -6,6 +6,7 @@ class TesteHospital(unittest.TestCase):
 
     def setUp(self):
         self.hospital = Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
+        self.assertIn(self.hospital, Hospital.Hospital.hospitais, "Um hospital deve ser registrado na lista global de hospitais")
 
     def testInsertHospital(self):
         self.assertNotEqual(self.hospital.nome, None)
@@ -31,6 +32,7 @@ class TestePaciente(unittest.TestCase):
 
     def setUp(self):
         self.paciente = Paciente.Paciente("Jose da Silva","P001","18")
+        self.assertIn(self.paciente, Paciente.Paciente.pacientes, "Um paciente deve ser registrado na lista geral de pacientes")
 
     def testInsertPaciente(self):
         self.assertNotEqual(self.paciente.nome, None)
@@ -44,16 +46,15 @@ class TestePaciente(unittest.TestCase):
 class TesteEmpregado(unittest.TestCase):
     def setUp(self):
         self.empregado = Empregado.Empregado("Dr. House","M001")
+        self.assertIn(self.empregado, Empregado.Empregado.empregados, "Um empregado deve ser registrado na lista global de empregados")
         for i in range(3):
             self.empregado.vincular_empregado_hospital(i)
             self.assertEqual(len(self.empregado.hospitais), i+1)
-
 
     def testInsertEmpregado(self):
         self.assertNotEqual(self.empregado.nome, None)
         self.assertNotEqual(self.empregado.matricula, None)
         self.assertLessEqual(len(self.empregado.hospitais), 3, "Um Medico so pode estar vinculado a no maximo 3 hospitais")
-
 
     def testVinculoEmpregadoHospitalThrowsException(self):
         if (len(self.empregado.hospitais) == 3):
@@ -76,6 +77,8 @@ class TesteMedico(unittest.TestCase):
 
     def setUp(self):
         self.medico = Medico.Medico("Dr. House","M001","Cardiologista")
+        self.assertIn(self.medico, Medico.Medico.medicos, "Um medico deve ser registrado na lista global de medicos")
+        self.assertIn(self.medico, Empregado.Empregado.empregados, "Um medico e um empregado e deve estar registrado na lista global de empregados")
 
     def testInsertMedico(self):
         self.assertNotEqual(self.medico.nome, None)
@@ -86,6 +89,8 @@ class TesteEnfermeira(unittest.TestCase):
 
     def setUp(self):
         self.enfermeira = Enfermeira.Enfermeira("Maria dos Anjos","E001","Enfermeira chefe")
+        self.assertIn(self.enfermeira, Enfermeira.Enfermeira.enfermeiras, "Uma enfermeira deve ser registrada na lista global de enfermeiras")
+        self.assertIn(self.enfermeira, Empregado.Empregado.empregados, "Uma enfermeira e uma empregada e deve ser registrada na lista global de empregados")
 
     def testInsertEnfermeira(self):
         self.assertNotEqual(self.enfermeira.nome, None)
@@ -96,6 +101,7 @@ class TesteInternacao(unittest.TestCase):
 
     def setUp(self):
         self.internacao = Internacao.Internacao("I001","05/02/2011", "", "M001")
+        self.assertIn(self.internacao, Internacao.Internacao.internacoes, "Uma internacao deve ser registrada na lista global de internacoes")
 
     def testInsertInternacao(self):
         self.assertNotEqual(self.internacao.codigo, None)
@@ -113,6 +119,7 @@ class TesteAtendimento(unittest.TestCase):
 
     def setUp(self):
         self.atendimento = Atendimento.Atendimento()
+        self.assertIn(self.atendimento, Atendimento.Atendimento.atendimentos, "Um atendimento deve ser registrado na lista global de atendimentos")
 
     def testPossuiEmpregado(self):
         self.assertEqual(self.atendimento.empregado, None)
