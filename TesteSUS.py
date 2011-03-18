@@ -136,7 +136,7 @@ class TesteInternacao(unittest.TestCase):
         
         self.assertIn(self.internacao, Internacao.Internacao.internacoes, "Uma internacao deve ser registrada na lista global de internacoes")
 
-        #relatorio_pacientes_internados_hospital_com_medicos_e_periodo = Internacao.Internacao.relatorio_pacientes_internados_hospital_com_medicos_e_periodo("H001")
+        relatorio_pacientes_internados_hospital_com_medicos_e_periodo = Internacao.Internacao.relatorio_pacientes_internados_hospital_com_medicos_e_periodo("H001")
         #self.assertIsInstance(relatorio_pacientes_internados_hospital_com_medicos_e_periodo, list)
         #Internacao.Internacao.relatorio_atendimentos_internacao = Internacao.relatorio_atendimentos_internacao("I001")
         #self.assertIsInstance(relatorio_atendimentos_internacao, list)
