@@ -13,6 +13,9 @@ class TesteHospital(unittest.TestCase):
         
         self.assertIn(self.internacao, self.hospital.internacoes)
         self.assertEqual(len(self.hospital.internacoes), 1)
+        
+        #relatorio_empregados_hospital = self.hospital.relatorio_hospital_empregados("H001")
+        #self.assertIsInstance(relatorio_hospital_empregados, list)
 
     def testInsertHospital(self):
         self.assertNotEqual(self.hospital.nome, None)
@@ -54,6 +57,7 @@ class TesteEmpregado(unittest.TestCase):
         for i in range(3):
             self.empregado.vincular_empregado_hospital(i)
             self.assertEqual(len(self.empregado.hospitais), i+1)
+        #relatorio_hospital_empregados = self.empregado.relatorio_hospital_empregados("E001")
 
     def testInsertEmpregado(self):
         self.assertNotEqual(self.empregado.nome, None)
@@ -132,8 +136,10 @@ class TesteInternacao(unittest.TestCase):
         
         self.assertIn(self.internacao, Internacao.Internacao.internacoes, "Uma internacao deve ser registrada na lista global de internacoes")
 
-        relatorio_pacientes_internados_hospital_com_medicos_e_periodo = self.internacao.relatorio_pacientes_internados_hospital_com_medicos_e_periodo()
-        self.assertIsInstance(relatorio_pacientes_internados_hospital_com_medicos_e_periodo, int)
+        relatorio_pacientes_internados_hospital_com_medicos_e_periodo = Internacao.Internacao.relatorio_pacientes_internados_hospital_com_medicos_e_periodo("H001")
+        #self.assertIsInstance(relatorio_pacientes_internados_hospital_com_medicos_e_periodo, list)
+        #Internacao.Internacao.relatorio_atendimentos_internacao = Internacao.relatorio_atendimentos_internacao("I001")
+        #self.assertIsInstance(relatorio_atendimentos_internacao, list)
         
     def testInsertInternacao(self):
         self.assertNotEqual(self.internacao.codigo, None)

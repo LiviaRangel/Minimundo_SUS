@@ -35,7 +35,7 @@ a) Relação dos pacientes (nome, código do seguro social, idade) internados nu
 Em internação, método relatorio_pacientes_internados_hospital_com_medicos_e_periodo
 
 b) Relação dos médicos e enfermeiras (nome, matricula) que trabalham determinado hospital.
-classe hospital relatorio_empregados_hospital
+classe hospital relatorio_hospital_empregados
 
 c) Relação dos médicos (nome, matrícula, especialidade) e enfermeiras (nome, matrícula, cargo) que deram atendimento a um paciente durante uma internação.
 classe internacao método relatorio_atendimentos_internacao
