@@ -24,13 +24,14 @@ class Hospital:
 	    resultado = "Nao ha hospitais cadastrados."
   	for i in range(len(Hospital.hospitais)):
             resultado += "\n*** Hospitais *** "
-	    if Hospital.hospitais[i].empregados.matricula == prof:
-	        resultado += "\nMatricula: ",Hospital.hospitais[i].codigo
-	        resultado += "\nNome: ", Hospital.hospitais[i].nome      
-	        resultado += "\nEndereco: ", Hospital.hospitais[i].endereco      
-	        resultado += "----------------"
-	    else:
-	        resultado = "Nao ha hospitas vinculados a esse empregado."
-	    resultado += "\n*****   FIM   ***** "
+	    for empregado in Hospital.hospitais[i].empregados:
+	        if empregado.matricula == prof:
+	            resultado += "\nMatricula: ",Hospital.hospitais[i].codigo
+	            resultado += "\nNome: ", Hospital.hospitais[i].nome      
+	            resultado += "\nEndereco: ", Hospital.hospitais[i].endereco      
+	            resultado += "----------------"
+	        else:
+	            resultado = "Nao ha hospitas vinculados a esse empregado."
+	        resultado += "\n*****   FIM   ***** "
 	return resultado
 
