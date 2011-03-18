@@ -43,6 +43,7 @@ while option != 5:
                 print "--- Medico --- "
                 print "Digite a matricula: "
                 matricula = raw_input()
+                print "Digite o nome: "
                 nome = raw_input()
                 print "Digite a especialidade: "
                 especialidade = raw_input()    
@@ -90,7 +91,7 @@ while option != 5:
                 medico = raw_input()
                 print "Informe o codigo do Hospital: "
                 hospital = raw_input()
-                Internacao(codigo, data_inicio, "", medico, paciente, hospital)
+                Internacao(codigo, data_inicio, medico, paciente, hospital)
 
 	    if opt == 2:
                 print "++++ Internacao ++++"
@@ -121,10 +122,10 @@ while option != 5:
             opr = input()
 
 	    if opr == 1:
-                print "*** Internacoes por Hospital *** "
+            print "*** Internacoes por Hospital *** "
 	        print "* Informe o hospital: "
 	        cod_hospital = raw_input()
-                print "*** Internacoes *** "
+            print "*** Internacoes *** "
 		for i in range(len(Internacao.Internacoes)):
 		    if Internacao.Internacoes[i].hospital == cod_hospital:
 		  	    print Internacao.Internacoes[i].codigo

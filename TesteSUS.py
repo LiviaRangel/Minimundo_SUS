@@ -100,16 +100,23 @@ class TesteEnfermeira(unittest.TestCase):
 class TesteInternacao(unittest.TestCase):
 
     def setUp(self):
-        self.internacao = Internacao.Internacao("I001","05/02/2011", "", "M001")
+        self.hospital= Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
+        self.internacao = Internacao.Internacao("I001","05/02/2011", "M001", "P001", self.hospital)
+        
         self.assertIn(self.internacao, Internacao.Internacao.internacoes, "Uma internacao deve ser registrada na lista global de internacoes")
 
     def testInsertInternacao(self):
         self.assertNotEqual(self.internacao.codigo, None)
         self.assertNotEqual(self.internacao.data_inicio, None)
         self.assertNotEqual(self.internacao.medico, None)
-
-    def testPossuiAtributoPaciente(self):
-        self.assertEqual(self.internacao.paciente, None)
+        self.assertEqual(self.internacao.data_fim, None)
+        self.assertNotEqual(self.internacao.paciente, None)
+        self.assertNotEqual(self.internacao.hospital, None)
+        
+    def testVincularInternacaoHospital(self):
+        self.internacao.vincular_internacao_hospital(self.hospital)
+        self.assertEqual(self.internacao.hospital, self.hospital)
+        self.assertIn(self.internacao, self.hospital.internacoes)
 
 #class TesteMedicoExists(unittest.TestCase):
 

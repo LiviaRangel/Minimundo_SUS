@@ -1,15 +1,18 @@
 class Internacao:
     internacoes = []
-    def __init__(self, codigo, data_inicio, data_fim, medico):
-        #def __init__(self, codigo, data_inicio, data_fim, medico, paciente, hospital):
+    def __init__(self, codigo, data_inicio, medico, paciente, hospital):
         self.codigo = codigo
         self.data_inicio = data_inicio
-        self.data_fim = data_fim
+        self.data_fim = None
         self.medico = medico
-        self.paciente = None
+        self.paciente = paciente
+        self.hospital = self.vincular_internacao_hospital(hospital)
         self.vincular_internacao()
-	#self.hospital = hospital
-	#self.gravarInternacao(self)
+
     def vincular_internacao(self):
         Internacao.internacoes.append(self)
 
+    def vincular_internacao_hospital(self, hospital):
+        if self not in hospital.internacoes:
+            hospital.vincular_internacao_hospital(self)            
+        return hospital
