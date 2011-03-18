@@ -12,7 +12,8 @@ class Hospital:
         Hospital.hospitais.append(self)
 
     def vincular_internacao_hospital(self, internacao):
-        self.internacoes.append(internacao)
+        if internacao not in self.internacoes:
+            self.internacoes.append(internacao)
 
     def vincular_empregado_hospital(self, empregado):
         self.empregados.append(empregado)

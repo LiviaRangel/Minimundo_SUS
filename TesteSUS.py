@@ -6,22 +6,24 @@ class TesteHospital(unittest.TestCase):
 
     def setUp(self):
         self.hospital = Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
-        self.assertIn(self.hospital, Hospital.Hospital.hospitais, "Um hospital deve ser registrado na lista global de hospitais")
+        self.internacao = Internacao.Internacao("I001","05/02/2011", "M001", "P001", self.hospital)
+        self.assertIn(self.hospital, Hospital.Hospital.hospitais, "Um hospital deve ser registrado na lista global de hospitais")        
+        self.hospital.vincular_internacao_hospital(self.internacao)
+        self.assertIn(self.internacao, self.hospital.internacoes)
+        self.assertEqual(len(self.hospital.internacoes), 1)
 
     def testInsertHospital(self):
         self.assertNotEqual(self.hospital.nome, None)
         self.assertNotEqual(self.hospital.codigo, None)
         self.assertNotEqual(self.hospital.endereco, None)
 
-
     def testListaHospitais(self):
         self.assertListEqual(self.hospital.empregados, [], "Um hospital deve possuir uma lista de empregados")
 
     def testListaInternacoes(self):
-        self.assertListEqual(self.hospital.internacoes, [], "Um hospital deve possuir uma lista de internacoes de pacientes")
+        self.assertListEqual(self.hospital.internacoes, [self.internacao], "Um hospital deve possuir uma lista de internacoes de pacientes")
 
     def testVinculoInternacoesHospital(self):
-        self.hospital.vincular_internacao_hospital(1)
         self.assertEqual(len(self.hospital.internacoes), 1)
 
     def testVinculoEmpregadoHospital(self):
@@ -102,6 +104,16 @@ class TesteInternacao(unittest.TestCase):
     def setUp(self):
         self.hospital= Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
         self.internacao = Internacao.Internacao("I001","05/02/2011", "M001", "P001", self.hospital)
+        self.empregado = Empregado.Empregado("Dr. House","M001")
+        
+        self.atendimento = Atendimento.Atendimento(self.internacao)
+        
+        self.internacao.vincular_atendimento(self.atendimento)
+        self.assertIn(self.atendimento, self.internacao.atendimentos)
+        #self.assertEqual(len(self..internacoes), 1)
+        
+        self.assertEqual(self.internacao.hospital, self.hospital)
+        self.assertIn(self.internacao, self.hospital.internacoes)
         
         self.assertIn(self.internacao, Internacao.Internacao.internacoes, "Uma internacao deve ser registrada na lista global de internacoes")
 
@@ -112,11 +124,6 @@ class TesteInternacao(unittest.TestCase):
         self.assertEqual(self.internacao.data_fim, None)
         self.assertNotEqual(self.internacao.paciente, None)
         self.assertNotEqual(self.internacao.hospital, None)
-        
-    def testVincularInternacaoHospital(self):
-        self.internacao.vincular_internacao_hospital(self.hospital)
-        self.assertEqual(self.internacao.hospital, self.hospital)
-        self.assertIn(self.internacao, self.hospital.internacoes)
 
 #class TesteMedicoExists(unittest.TestCase):
 
@@ -125,14 +132,16 @@ class TesteInternacao(unittest.TestCase):
 class TesteAtendimento(unittest.TestCase):
 
     def setUp(self):
-        self.atendimento = Atendimento.Atendimento()
+        self.hospital= Hospital.Hospital("Dr.Beda","H001","Rua do Gas")
+        self.internacao = Internacao.Internacao("I001","05/02/2011", "M001", "P001", self.hospital)
+        self.atendimento = Atendimento.Atendimento(self.internacao)
         self.assertIn(self.atendimento, Atendimento.Atendimento.atendimentos, "Um atendimento deve ser registrado na lista global de atendimentos")
 
     def testPossuiEmpregado(self):
         self.assertEqual(self.atendimento.empregado, None)
 
     def testPossuiInternacao(self):
-        self.assertEqual(self.atendimento.internacao, None)
+        self.assertNotEqual(self.atendimento.internacao, None)
 
 #class TesteInternacaoExists(unittest.TestCase):
 
