@@ -90,7 +90,12 @@ while option != 5:
                 print "Digite a matricula do medico: "
                 medico = raw_input()
                 print "Informe o codigo do Hospital: "
-                hospital = raw_input()
+                cod_hospital = raw_input()
+		for i in range(len(Hospital.hospitais)):
+   	            if Hospital.hospitais[i].codigo == cod_hospital:
+			hospital = Hospital.hospitais[i]
+	            else:
+			print "Hospital nao cadastrado, a internacao nao pode ser feita."
                 Internacao(codigo, data_inicio, medico, paciente, hospital)
 
 	    if opt == 2:
@@ -122,19 +127,10 @@ while option != 5:
             opr = input()
 
 	    if opr == 1:
-            print "*** Internacoes por Hospital *** "
+                print "*** Internacoes por Hospital *** "
 	        print "* Informe o hospital: "
 	        cod_hospital = raw_input()
-            print "*** Internacoes *** "
-		for i in range(len(Internacao.Internacoes)):
-		    if Internacao.Internacoes[i].hospital == cod_hospital:
-		  	    print Internacao.Internacoes[i].codigo
-	        	    print Internacao.Internacoes[i].data_inicio
-		            print Internacao.Internacoes[i].data_fim      
-	        	    print Internacao.Internacoes[i].medico
-	        	    print Internacao.Internacoes[i].paciente
-			    print "----------------"
-                print "*****   FIM   ***** "
+                print Internacao.relatorio_pacientes_internados_hospital_com_medicos_e_periodo(cod_hospital)
 
 	    if opr == 2:
                 print "*** Profissionais por Hospital *** "
