@@ -10,7 +10,7 @@ class Internacao:
         self.data_inicio = data_inicio
         self.data_fim = None
         self.medico = medico
-        self.paciente = paciente
+        self.paciente = self.vincular_paciente(paciente)
         self.hospital = self.vincular_internacao_hospital(hospital)
         self.atendimentos = []
         self.vincular_internacao()
@@ -26,6 +26,16 @@ class Internacao:
     def vincular_atendimento(self, atendimento):
         if atendimento not in self.atendimentos:
             self.atendimentos.append(atendimento)
+        
+    def vincular_paciente(self, paciente):
+        if self not in paciente.internacoes:
+            paciente.vincular_internacao(self)            
+        return paciente
+        
+    def vincular_medico(self, medico):
+        if self not in medico.internacoes:
+            medico.vincular_internacao(self)
+        return medico
 
     @staticmethod
     def relatorio_pacientes_internados_hospital_com_medicos_e_periodo(cod_hospital):

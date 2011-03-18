@@ -1,7 +1,7 @@
 class Atendimento:
     atendimentos = []
-    def __init__(self, internacao):
-        self.empregado = None
+    def __init__(self, empregado, internacao):
+        self.empregado = self.vincular_empregado(empregado)
         self.internacao = self.vincular_atendimento_internacao(internacao)
         self.vincular_atendimento()
 
@@ -12,3 +12,8 @@ class Atendimento:
         if self not in internacao.atendimentos:
             internacao.vincular_atendimento(internacao)
         return internacao
+        
+    def vincular_empregado(self, empregado):
+        if self not in empregado.atendimentos:
+            empregado.vincular_atendimento(self)
+        return empregado

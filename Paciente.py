@@ -10,3 +10,5 @@ class Paciente:
     def vincular_paciente(self):
         Paciente.pacientes.append(self)
 
+    def vincular_internacao(self, internacao):
+        self.internacoes.append(internacao)
