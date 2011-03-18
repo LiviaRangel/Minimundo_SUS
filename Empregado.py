@@ -20,6 +20,6 @@ class Empregado:
         #print hospital
             self.hospitais.append(hospital)
 
-    def vincular_empregado_atendimento(self, atendimento):
+    def vincular_atendimento(self, atendimento):
         self.atendimentos.append(atendimento)
 
