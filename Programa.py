@@ -143,7 +143,7 @@ while option != 5:
                 print "*** Atendimentos por internacao *** "
 	        print "* Informe a internacao: "
 	        internacao = raw_input()
-                print Atendimento.relatorio_atendimentos_internacao(internacao)
+                print Internacao.relatorio_atendimentos_internacao(internacao)
 
 
 	    if opr == 4:

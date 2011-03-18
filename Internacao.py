@@ -1,9 +1,9 @@
 from Medico import *
 from Paciente import *
+from Atendimento import *
 
 class Internacao:
     internacoes = []
-
 
     def __init__(self, codigo, data_inicio, medico, paciente, hospital):
         self.codigo = codigo
@@ -59,5 +59,21 @@ class Internacao:
 	        resultado += "----------------"
 	    else:
 	        resultado = "Nao ha internacao vinculada a esse hospital"
+	    resultado += "\n*****   FIM   ***** "
+	    return resultado
+
+    @staticmethod
+    def relatorio_atendimentos_internacao(internacao):
+        resultado = []
+        if len(Atendimento.atendimentos) == 0:
+	    resultado = "Nao ha atendimentos cadastradas."
+  	for i in range(len(Internacao.internacoes)):
+            resultado += "\n*** Atendimentos *** "
+	    if Internacao.internacoes[i].codigo == internacao:
+	        for j in range(len(Internacao.internacoes[i].atendimentos[j])):
+        	    resultado += "\nMatricula: ",Internacao.internacoes[i].atendimentos[j].empregado.matricula
+        	    resultado += "\nNome: ",Internacao.internacoes[i].atendimentos[j].empregado.nome
+	    else:
+	        resultado = "Nao ha atendimentos vinculados a essa internacao"
 	    resultado += "\n*****   FIM   ***** "
 	    return resultado
