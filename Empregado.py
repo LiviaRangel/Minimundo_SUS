@@ -23,3 +23,19 @@ class Empregado:
     def vincular_empregado_atendimento(self, atendimento):
         self.atendimentos.append(atendimento)
 
+    @staticmethod
+    def relatorio_empregados_hospital(cod_hospital):
+        resultado = []
+        if len(Empregado.empregados) == 0:
+	    resultado = "Nao ha empregados cadastrados."
+  	for i in range(len(Empregado.empregados)):
+            resultado += "\n*** Empregados *** "
+	    if Empregado.empregados[i].hospital.codigo == cod_hospital:
+	        resultado += "\nMatricula: ",Empregado.empregados[i].matricula
+	        resultado += "\nNome: ", Empregado.empregados[i].nome      
+	        resultado += "----------------"
+	    else:
+	        resultado = "Nao ha empregados vinculados a esse hospital."
+	    resultado += "\n*****   FIM   ***** "
+	return resultado
+

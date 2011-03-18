@@ -1,5 +1,6 @@
 from Hospital import *
 from Medico import *
+from Empregado import *
 from Enfermeira import *
 from Paciente import *
 from Internacao import *
@@ -135,18 +136,19 @@ while option != 5:
 	    if opr == 2:
                 print "*** Profissionais por Hospital *** "
 	        print "* Informe o hospital: "
-	        internacao = raw_input()
+	        cod_hospital = raw_input()
+                print Empregado.relatorio_empregados_hospital(cod_hospital)
 
 	    if opr == 3:
                 print "*** Atendimentos por internacao *** "
 	        print "* Informe a internacao: "
 	        internacao = raw_input()
+                print Atendimento.relatorio_atendimentos_internacao(internacao)
 
 
 	    if opr == 4:
                 print "*** Hospitais por profissionais*** "
 	        print "* Informe a matricula do profissional: "
-	        internacao = raw_input()
-
-
+	        profissional = raw_input()
+                print Hospital.relatorio_hospital_empregados(profissional)
 
